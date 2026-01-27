@@ -1,0 +1,41 @@
+{
+  "FileVersion": 3,
+
+  "FriendlyName": "Chromium View MVVM",
+  "Version": 1,
+  "VersionName": "1.0",
+  "CreatedBy": "Custom",
+  "CreatedByURL": "",
+  "Description": "A plugin to support the Model-View-ViewModel pattern using WebBrowser (Chromium) as the View.",
+  "Category": "UI",
+  "EnabledByDefault": false,
+  "CanContainContent": false,
+  "IsBetaVersion": true,
+  "IsExperimentalVersion": false,
+  "Installed": false,
+
+  "Modules": [
+    {
+      "Name": "ChromiumView",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "ChromiumViewBlueprint",
+      "Type": "UncookedOnly",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "ChromiumViewEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ],
+
+  "Plugins": [
+    {
+      "Name": "ModelViewViewModel",
+      "Enabled": true
+    }
+  ]
+}

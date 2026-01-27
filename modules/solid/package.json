@@ -1,0 +1,35 @@
+{
+  "name": "@incanta/ue-view-solid",
+  "version": "1.0.0",
+  "description": "SolidJS bindings for Unreal Engine ChromiumView MVVM plugin",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "unreal",
+    "unreal-engine",
+    "chromium",
+    "mvvm",
+    "viewmodel",
+    "solid",
+    "solidjs",
+    "signals"
+  ],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "@incanta/ue-view-base": "portal:../base",
+    "solid-js": "^1.9.11",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@incanta/ue-view-base": "*",
+    "solid-js": "^1.0.0"
+  },
+  "packageManager": "yarn@4.12.0"
+}

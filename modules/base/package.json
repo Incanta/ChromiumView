@@ -1,0 +1,26 @@
+{
+  "name": "@incanta/ue-view-base",
+  "version": "1.0.0",
+  "description": "TypeScript bindings for Unreal Engine ChromiumView MVVM plugin",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "unreal",
+    "unreal-engine",
+    "chromium",
+    "mvvm",
+    "viewmodel"
+  ],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "yarn@4.12.0"
+}

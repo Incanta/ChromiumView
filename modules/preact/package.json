@@ -1,0 +1,34 @@
+{
+  "name": "@incanta/ue-view-preact",
+  "version": "1.0.0",
+  "description": "Preact bindings for Unreal Engine ChromiumView MVVM plugin",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "unreal",
+    "unreal-engine",
+    "chromium",
+    "mvvm",
+    "viewmodel",
+    "preact",
+    "hooks"
+  ],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "@incanta/ue-view-base": "portal:../base",
+    "preact": "^10.26.5",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@incanta/ue-view-base": "*",
+    "preact": "^10.0.0"
+  },
+  "packageManager": "yarn@4.12.0"
+}
