@@ -17,7 +17,7 @@ The [NRSL license](./LICENSE.nrsl) is is a source-available, non-OSI-approved, p
 While the [license contents](./LICENSE.nrsl) is what determines the terms of the license, here are some guidelines to assist you with understanding the terms.
 
 > [!IMPORTANT]
-> The NSRL license has a "License Notice" clause you must adhere to, which **requires attribution** and other important details.
+> Both licenses require attribution. The NRSL license has a "License Notice" clause you must adhere to, which **requires attribution** and other important details. The AGPLv3 also requires you to preserve copyright notices and license text (see Sections 4 and 5 of the AGPL).
 
 ### Can I sell a game/app that uses this software?
 
