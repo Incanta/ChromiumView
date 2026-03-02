@@ -263,6 +263,6 @@ YourProject/
 
 See [LICENSE.md](./LICENSE.md) file for details.
 
-Most users will use the [NRSL](./LICENSE.nrsl) **which requires attribution**; the [AGPL](./LICENSE.agpl) may be more restrictive for most common use cases.
+Most users will use the [NRSL](./LICENSE.nrsl); the [AGPL](./LICENSE.agpl) may be more restrictive for most common use cases. **Both licenses require attribution.**
 
 **Both require retaining the copyright notice:** © 2026 Incanta LLC
