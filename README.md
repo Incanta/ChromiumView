@@ -261,4 +261,8 @@ YourProject/
 
 ## License
 
-See LICENSE file for details.
+See [LICENSE.md](./LICENSE.md) file for details.
+
+Most users will use the [NRSL](./LICENSE.nrsl) **which requires attribution**; the [AGPL](./LICENSE.agpl) may be more restrictive for most common use cases.
+
+**Both require retaining the copyright notice:** © 2026 Incanta LLC
