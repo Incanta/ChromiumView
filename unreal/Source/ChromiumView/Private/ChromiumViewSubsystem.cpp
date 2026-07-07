@@ -120,6 +120,9 @@ void UChromiumViewSubsystem::RemoveView(UChromiumViewWidget* Widget)
 
   UnregisterWidget(Widget);
 
+  // Drop the view's (dev-server) connection before it's destroyed so CEF doesn't block for
+  // minutes closing a live socket during teardown (the PIE-stop hang).
+  Widget->PrepareForTeardown();
   Widget->UnbindViewModel();
   Widget->RemoveFromParent();
 

@@ -150,6 +150,13 @@ public:
   UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "ChromiumView|Viewport")
   void RemoveFromViewport();
 
+  /**
+   * Navigate the view to about:blank to drop its (dev-server) connection before the browser
+   * is torn down. Without this, CEF blocks for minutes closing a live socket during
+   * destruction (the PIE-stop hang). Called by the subsystem when a view is removed.
+   */
+  void PrepareForTeardown();
+
   /** Delegate fired when the View is ready */
   UPROPERTY(BlueprintAssignable, Category = "ChromiumView")
   FOnChromiumViewReady OnViewReady;

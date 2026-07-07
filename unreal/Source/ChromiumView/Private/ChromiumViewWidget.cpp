@@ -49,6 +49,16 @@ void UChromiumViewWidget::ReleaseSlateResources(bool bReleaseChildren)
   SlateWidget.Reset();
 }
 
+void UChromiumViewWidget::PrepareForTeardown()
+{
+  if (SlateWidget.IsValid())
+  {
+    // Navigating away drops the live (dev-server) connection so CEF doesn't block for
+    // minutes closing the socket when the browser is destroyed during PIE teardown.
+    SlateWidget->LoadURL(TEXT("about:blank"));
+  }
+}
+
 TSharedRef<SWidget> UChromiumViewWidget::RebuildWidget()
 {
   // Use pending config if available, otherwise use current ViewConfig
