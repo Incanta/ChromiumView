@@ -259,6 +259,44 @@ void UChromiumViewModelBridge::BroadcastFieldChangeToJS(const FName& FieldName, 
 void UChromiumViewModelBridge::HandleViewEvent(const FString& EventName, const FString& JsonPayload, int32 CallbackId)
 {
   FName EventFName(*EventName);
+
+  // MVVM command dispatch: invoke the matching UFUNCTION on the bound ViewModel (the
+  // "command" the view fires via createSendEvent). The JSON payload's fields are
+  // marshalled into the function's parameters by name (e.g. {"OptionId":"Self"} ->
+  // void ChooseOption(FName OptionId)). Without this the view->ViewModel direction is
+  // dead — events would only reach OnViewEvent listeners.
+  if (ViewModel)
+  {
+    if (UFunction* Func = ViewModel->FindFunction(EventFName))
+    {
+      void* Params = FMemory::Malloc(FMath::Max<int32>(Func->ParmsSize, 1));
+      Func->InitializeStruct(Params);
+
+      if (!JsonPayload.IsEmpty())
+      {
+        TSharedPtr<FJsonObject> JsonObject;
+        TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(JsonPayload);
+        if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+        {
+          // A UFunction is a UStruct whose child properties are its parameters, so the
+          // standard struct converter maps payload fields onto the params by name.
+          FJsonObjectConverter::JsonObjectToUStruct(JsonObject.ToSharedRef(), Func, Params, 0, 0);
+        }
+      }
+
+      ViewModel->ProcessEvent(Func, Params);
+
+      Func->DestroyStruct(Params);
+      FMemory::Free(Params);
+    }
+    else
+    {
+      UE_LOG(LogChromiumView, Warning,
+        TEXT("View event '%s' has no matching UFUNCTION on ViewModel '%s'"),
+        *EventName, *GetNameSafe(ViewModel));
+    }
+  }
+
   OnViewEvent.Broadcast(EventFName, JsonPayload, CallbackId);
 }
 
