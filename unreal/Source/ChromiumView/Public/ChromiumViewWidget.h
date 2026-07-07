@@ -101,6 +101,14 @@ public:
   void ReloadView();
 
   /**
+   * Set whether this view is interactive (accepts mouse/keyboard for clickable UI like
+   * menus) or a passive pass-through overlay (default, e.g. a HUD that must not steal
+   * mouse-look). Applies immediately and persists across rebuilds.
+   */
+  UFUNCTION(BlueprintCallable, Category = "ChromiumView")
+  void SetInteractive(bool bInInteractive);
+
+  /**
    * Enable or disable browser pooling for this widget.
    * When enabled, multiple widgets loading the same URL will share a browser instance.
    * @param bEnabled Whether to enable pooling
@@ -219,6 +227,9 @@ private:
 
   /** Whether this widget is currently using a shared browser instance */
   bool bIsUsingSharedBrowser = false;
+
+  /** Whether this view accepts input (clickable menus) vs passive overlay (default). */
+  bool bInteractive = false;
 
   /** Pending view config to load after widget is built */
   TOptional<FChromiumViewConfig> PendingViewConfig;

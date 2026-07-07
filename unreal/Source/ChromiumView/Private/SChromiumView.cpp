@@ -33,6 +33,15 @@ void SChromiumView::Construct(const FArguments& InArgs)
     WebBrowserView.IsValid() ? TEXT("yes") : TEXT("no"));
 }
 
+void SChromiumView::SetInteractive(bool bInInteractive)
+{
+  bInteractive = bInInteractive;
+  // Passive: fully transparent to hit-testing (HUD overlay never steals input).
+  // Interactive: self stays transparent but children are hit-tested, so the child
+  // SWebBrowserView receives mouse/keyboard and CEF buttons/links become clickable.
+  SetVisibility(bInteractive ? EVisibility::SelfHitTestInvisible : EVisibility::HitTestInvisible);
+}
+
 void SChromiumView::LoadURL(const FString& Url)
 {
   if (WebBrowserView.IsValid())

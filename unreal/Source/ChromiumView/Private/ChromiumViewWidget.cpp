@@ -118,7 +118,22 @@ TSharedRef<SWidget> UChromiumViewWidget::RebuildWidget()
     SlateWidget->BindUObject(TEXT("ChromiumViewBridge"), ViewModelBridge, true);
   }
 
+  // Re-apply interactivity (covers both pooled and freshly-created Slate widgets).
+  if (SlateWidget.IsValid())
+  {
+    SlateWidget->SetInteractive(bInteractive);
+  }
+
   return SlateWidget.ToSharedRef();
+}
+
+void UChromiumViewWidget::SetInteractive(bool bInInteractive)
+{
+  bInteractive = bInInteractive;
+  if (SlateWidget.IsValid())
+  {
+    SlateWidget->SetInteractive(bInteractive);
+  }
 }
 
 void UChromiumViewWidget::SynchronizeProperties()

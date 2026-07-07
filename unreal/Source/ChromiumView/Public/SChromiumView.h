@@ -70,8 +70,18 @@ public:
   /** Set the OnLoadError delegate (for use when reusing pooled browsers) */
   void SetOnLoadError(const FSimpleDelegate& InDelegate) { OnLoadError = InDelegate; }
 
-  //~ Begin SWidget Interface - Disable input handling
-  virtual bool SupportsKeyboardFocus() const override { return false; }
+  /**
+   * Toggle interactivity. Passive (default): HitTestInvisible, so the view is a
+   * pass-through overlay (e.g. a HUD) that never steals cursor/mouse-look. Interactive:
+   * SelfHitTestInvisible, so this wrapper stays transparent to hit-testing but the child
+   * SWebBrowserView becomes hit-testable and CEF receives mouse/keyboard (clickable menus).
+   */
+  void SetInteractive(bool bInInteractive);
+
+  //~ Begin SWidget Interface - input handling gated on bInteractive (the child
+  //~ SWebBrowserView handles events natively once this wrapper is SelfHitTestInvisible;
+  //~ these stubs only matter for the passive case where they stay unhandled).
+  virtual bool SupportsKeyboardFocus() const override { return bInteractive; }
   virtual FReply OnFocusReceived(const FGeometry& MyGeometry, const FFocusEvent& InFocusEvent) override { return FReply::Unhandled(); }
   virtual FReply OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent) override { return FReply::Unhandled(); }
   virtual FReply OnMouseButtonUp(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent) override { return FReply::Unhandled(); }
@@ -81,7 +91,7 @@ public:
   virtual FReply OnKeyUp(const FGeometry& MyGeometry, const FKeyEvent& InKeyEvent) override { return FReply::Unhandled(); }
   virtual FReply OnKeyChar(const FGeometry& MyGeometry, const FCharacterEvent& InCharacterEvent) override { return FReply::Unhandled(); }
   virtual FCursorReply OnCursorQuery(const FGeometry& MyGeometry, const FPointerEvent& CursorEvent) const override { return FCursorReply::Unhandled(); }
-  virtual bool IsInteractable() const override { return false; }
+  virtual bool IsInteractable() const override { return bInteractive; }
   //~ End SWidget Interface
 
 private:
@@ -98,4 +108,7 @@ private:
   TSharedPtr<SWebBrowserView> WebBrowserView;
   FSimpleDelegate OnLoadCompleted;
   FSimpleDelegate OnLoadError;
+
+  /** Whether this view accepts cursor/mouse/keyboard input (see SetInteractive). */
+  bool bInteractive = false;
 };
