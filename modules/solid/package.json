@@ -22,8 +22,8 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
-    "@types/node": "^25.0.10",
     "@incanta/ue-view-base": "portal:../base",
+    "@types/node": "^25.0.10",
     "solid-js": "^1.9.11",
     "typescript": "^5.9.3"
   },

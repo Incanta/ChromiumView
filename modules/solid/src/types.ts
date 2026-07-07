@@ -8,7 +8,7 @@ import type {
   ViewModelState,
   ViewEventPayload,
   ChromiumViewSizeMode,
-} from "@unreal/chromium-view";
+} from "@incanta/ue-view-base";
 
 /**
  * Props for the ChromiumViewProvider component

@@ -17,12 +17,12 @@ import {
   isChromiumViewAvailable,
   getChromiumView,
   ChromiumViewSizeMode,
-} from "@unreal/chromium-view";
+} from "@incanta/ue-view-base";
 import type {
   ChromiumViewAPI,
   ViewModelState,
   ViewEventPayload,
-} from "@unreal/chromium-view";
+} from "@incanta/ue-view-base";
 import type {
   ChromiumViewProviderProps,
   ChromiumViewContextValue,

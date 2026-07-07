@@ -10,7 +10,7 @@ import {
   onCleanup,
   type Accessor,
 } from "solid-js";
-import type { ViewModelState, ViewEventPayload } from "@unreal/chromium-view";
+import type { ViewModelState, ViewEventPayload } from "@incanta/ue-view-base";
 import { useChromiumViewContext } from "./context";
 import type {
   CreateFieldOptions,

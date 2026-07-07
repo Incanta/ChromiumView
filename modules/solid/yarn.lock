@@ -5,6 +5,26 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@incanta/ue-view-base@portal:../base::locator=%40incanta%2Fue-view-solid%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@incanta/ue-view-base@portal:../base::locator=%40incanta%2Fue-view-solid%40workspace%3A."
+  languageName: node
+  linkType: soft
+
+"@incanta/ue-view-solid@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@incanta/ue-view-solid@workspace:."
+  dependencies:
+    "@incanta/ue-view-base": "portal:../base"
+    "@types/node": "npm:^25.0.10"
+    solid-js: "npm:^1.9.11"
+    typescript: "npm:^5.9.3"
+  peerDependencies:
+    "@incanta/ue-view-base": "*"
+    solid-js: ^1.0.0
+  languageName: unknown
+  linkType: soft
+
 "@types/node@npm:^25.0.10":
   version: 25.0.10
   resolution: "@types/node@npm:25.0.10"
@@ -13,26 +33,6 @@ __metadata:
   checksum: 10c0/9edc3c812b487c32c76eebac7c87acae1f69515a0bc3f6b545806d513eb9e918c3217bf751dc93da39f60e06bf1b0caa92258ef3a6dd6457124b2e761e54f61f
   languageName: node
   linkType: hard
-
-"@unreal/chromium-view-solid@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@unreal/chromium-view-solid@workspace:."
-  dependencies:
-    "@types/node": "npm:^25.0.10"
-    "@unreal/chromium-view": "portal:../TypeScript"
-    solid-js: "npm:^1.9.11"
-    typescript: "npm:^5.9.3"
-  peerDependencies:
-    "@unreal/chromium-view": "*"
-    solid-js: ^1.0.0
-  languageName: unknown
-  linkType: soft
-
-"@unreal/chromium-view@portal:../TypeScript::locator=%40unreal%2Fchromium-view-solid%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@unreal/chromium-view@portal:../TypeScript::locator=%40unreal%2Fchromium-view-solid%40workspace%3A."
-  languageName: node
-  linkType: soft
 
 "csstype@npm:^3.1.0":
   version: 3.2.3

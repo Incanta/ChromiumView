@@ -12,7 +12,7 @@ import {
   createEffect,
   splitProps,
 } from "solid-js";
-import { ChromiumViewSizeMode } from "@unreal/chromium-view";
+import { ChromiumViewSizeMode } from "@incanta/ue-view-base";
 import { ChromiumViewProvider, useChromiumViewContext } from "./context";
 import {
   createField,
