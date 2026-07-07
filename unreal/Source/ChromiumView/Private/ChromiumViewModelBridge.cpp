@@ -85,6 +85,32 @@ void UChromiumViewModelBridge::SubscribeToFieldChanges()
     FieldChangeDelegateHandles.Add(FieldId, Handle);
     return true; // Continue iteration
   });
+
+#if WITH_EDITORONLY_DATA
+  // AngelScript ViewModels can't emit UHT's static FieldNotify descriptor, so ForEachField
+  // above misses their fields. Also subscribe to any UPROPERTY tagged with FieldNotify
+  // metadata (set by the AngelScript class generator) by name. The delegate store is
+  // name-keyed (FFieldId equality/hash are name-based), so a name broadcast from AngelScript
+  // (FieldNotify::NotifyFieldChanged) reaches these handlers.
+  for (TFieldIterator<FProperty> PropIt(ViewModel->GetClass()); PropIt; ++PropIt)
+  {
+    FProperty* Property = *PropIt;
+    if (!Property->HasMetaData(TEXT("FieldNotify")))
+    {
+      continue;
+    }
+    UE::FieldNotification::FFieldId FieldId(Property->GetFName(), /*BitNumber*/ 0);
+    if (FieldChangeDelegateHandles.Contains(FieldId))
+    {
+      continue; // already subscribed via the static descriptor
+    }
+    FDelegateHandle Handle = ViewModel->AddFieldValueChangedDelegate(
+      FieldId,
+      INotifyFieldValueChanged::FFieldValueChangedDelegate::CreateUObject(
+        this, &UChromiumViewModelBridge::OnViewModelFieldChanged));
+    FieldChangeDelegateHandles.Add(FieldId, Handle);
+  }
+#endif // WITH_EDITORONLY_DATA
 }
 
 void UChromiumViewModelBridge::UnsubscribeFromFieldChanges()
